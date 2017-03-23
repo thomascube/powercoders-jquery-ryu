@@ -9,7 +9,8 @@ First: Get yourself familiar with the [jQuery API documentation](http://api.jque
 Second: Clone this repository onto your computer using git bash.
 
 ```
-git clone git@github.com:thomascube/powercoders-jquery-ryu.git
+git clone https://github.com/thomascube/powercoders-jquery-ryu.git
+cd powercoders-jquery-ryu
 ```
 
 ## Instructions
