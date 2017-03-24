@@ -1,45 +1,85 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Ryu fires a hadouken</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-    <style>
-      body {
-        margin: 50px 0 50px 40px;
+<head>
+  <meta charset="utf-8">
+  <title>Ryu fires a hadouken</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <style>
+  body {
+    margin: 50px 0 50px 40px;
+    background-image: url('./images/place.png');
+    background-position: bottom;
+  }
+
+  #ryu-div {
+    margin-bottom: 40px;
+  }
+
+  #ryu-div .ryu {
+    cursor: pointer;
+  }
+  #ryu-div .hadouken {
+    position: absolute;
+    left: 380px;
+    top: 165px;
+    z-index: -1;
+
+  }
+#hadouken-count {
+  color: white;
+  font-size: 25px;
+}
+
+
+};
+</style>
+</head>
+<body>
+  <div id="ryu-div">
+    <img class="ryu" src="./images/ryu_stand_still.png" alt="text">
+  </div>
+  <div id="hadouken-count">
+    Ryu has fired <span class="count">0</span> Fire Balls
+  </div>
+  <script>
+  $(document).ready(function() {
+    // define image URLs to use for Ryu
+    var ryuImages = {
+      animated: './images/ryu_animated.gif',
+      still:    './images/ryu_stand_still.png',
+      action:   './images/ryu_hadouken_pose.png'
+    };
+
+    // let's get started here when DOM is ready
+
+    $( "#ryu-div .ryu" ).hover(
+      function() {
+        $(this).attr('src', ryuImages.animated );
+      }, function() {
+        $(this).attr('src', ryuImages.still );
       }
-
-      #ryu-div {
-        margin-bottom: 40px;
+    );
+    $( "#ryu-div .ryu" ).mousedown(function() {
+      $( this ).attr('src', ryuImages.action);
+      var image = $('<img>', { src: './images/fireball.gif', alt: 'Image description' });
+      image.addClass('hadouken');
+      image.appendTo('#ryu-div');
+      $('#ryu-div .hadouken').animate({left: "+=800"}, 800, function() {
+        $(this).remove();
       }
-
-      #ryu-div .ryu {
-        cursor: pointer;
-      }
-
-      #ryu-div .hadouken {
-        /* define the appropriate styles for the animated hadouken */
-      };
-    </style>
-  </head>
-  <body>
-    <div id="ryu-div">
-      <img class="ryu" src="./images/ryu_stand_still.png">
-    </div>
-    <div id="hadouken-count">
-      Ryu has fired <span class="count">0</span> hadoukens
-    </div>
-    <script>
-    $(document).ready(function() {
-      // define image URLs to use for Ryu
-      var ryuImages = {
-        animated: './images/ryu_animated.gif',
-        still:    './images/ryu_stand_still.png',
-        action:   './images/ryu_hadouken_pose.png'
-      };
-
-      // let's get started here when DOM is ready
-    });
-    </script>
-  </body>
+    );
+  });
+  var count = 0;
+  $( "#ryu-div .ryu" ).mouseup(function() {
+    $( this ).attr('src', ryuImages.animated);
+    count +=1;
+    if (count == 11){
+      alert("YOU DON'T HAVE FIRE ANYMORE" );
+      count = 0;
+    }
+    $('#hadouken-count .count').text(count);
+  });
+});
+</script>
+</body>
 </html>
