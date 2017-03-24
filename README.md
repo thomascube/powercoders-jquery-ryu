@@ -25,4 +25,13 @@ The goal is to code the mouse interactions using jQuery inside the `index.html` 
    * When the animation is done, the hadouken image shall be removed from the DOM
 4. The number of hadoukens fired by Ryu shall be counted and displayed as text below the image. Update the counter after the hadouken was been fired.
 
+## Hints
+
+For solving this exercise, look up the jQuery functions `hover`, `mousedown`, `mouseup` and `animate`.
+
+New DOM elements are created with this syntax in jQuery:
+```
+var image = $('<img>', {src: 'https://...', alt: 'New Image'});
+```
+
 Good luck!
